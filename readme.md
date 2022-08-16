@@ -13,7 +13,7 @@ Please follow the instructions below to configure the development environment pr
 ### Install `Build Tools for Visual Studio`
 
 Download and launch [Visual Studio Tools - Install Free for Windows, Mac, Linux](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022). Select and install the following two components.
-![installer components](imgs\vsInstaller.png)
+![installer components](./imgs/vsInstaller.png)
 
 ### Set environment variables
 
@@ -37,7 +37,7 @@ INCLUDE=d:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\
 
 Copy and paste variable name & value relatively to create an environment variable.
 
-![INCLUDE](imgs\INCLUDE.png)
+![INCLUDE](imgs/INCLUDE.png)
 
 Repeat the process to create env variables for `LIB` and `LIBPATH`. As for `PATH`, command `set` prints complete but tedious directories, which is unnecessary for me. So I add directories of `MSBuild.exe`, `cl.exe` and `rc.exe` to system `Path` manually. In my case, they are
 

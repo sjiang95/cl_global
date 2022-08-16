@@ -1,6 +1,6 @@
 # Use `cl` as global compiler
 
-This gist records the process to configure global development environment base on `cl.exe` compiler provided by `Build Tools for Visual Studio`.
+This tutorial records the process to configure global `C/C++` development environment base on `cl.exe` compiler provided by `Build Tools for Visual Studio`.
 
 ## Motivation
 
@@ -73,6 +73,17 @@ You are now all set to call these tools world-wide.
 
 ### Test
 
+Install `cmake` and make sure it can be called from command line.
+
+```shell
+$ cmake --version
+cmake version 3.23.2
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+```
+
+Create folders for the simple test program.
+
 ```shell
 mkdir helloworld
 cd helloworld
@@ -100,4 +111,131 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(hello helloworld.cpp)
 
 target_link_libraries(hello)
+```
+
+There are many choices of build systems. This tutorial takes `MSBuild` and `ninja` for examples.
+
+#### MSBuild
+
+Create a folder for build files.
+
+```shell
+mkdir msbuild
+cd msbuild
+```
+
+Generate build files using `cmake`. The path `..` points to where `CMakeLists.txt` is.
+
+```shell
+cmake .. -G"Visual Studio 17 2022"
+```
+
+If you don't know what are available `Generator` values of `-G`, run
+
+```shell
+$ cmake -G
+CMake Error: No generator specified for -G
+
+Generators
+* Visual Studio 17 2022        = Generates Visual Studio 2022 project files.
+                                 Use -A option to specify architecture.
+  Visual Studio 16 2019        = Generates Visual Studio 2019 project files.
+                                 Use -A option to specify architecture.
+  Visual Studio 15 2017 [arch] = Generates Visual Studio 2017 project files.
+                                 Optional [arch] can be "Win64" or "ARM".
+  Visual Studio 14 2015 [arch] = Generates Visual Studio 2015 project files.
+                                 Optional [arch] can be "Win64" or "ARM".
+  Visual Studio 12 2013 [arch] = Generates Visual Studio 2013 project files.
+                                 Optional [arch] can be "Win64" or "ARM".
+  Visual Studio 11 2012 [arch] = Generates Visual Studio 2012 project files.
+                                 Optional [arch] can be "Win64" or "ARM".
+  Visual Studio 10 2010 [arch] = Deprecated.  Generates Visual Studio 2010
+                                 project files.  Optional [arch] can be
+                                 "Win64" or "IA64".
+  Visual Studio 9 2008 [arch]  = Generates Visual Studio 2008 project files.
+                                 Optional [arch] can be "Win64" or "IA64".
+  Borland Makefiles            = Generates Borland makefiles.
+  NMake Makefiles              = Generates NMake makefiles.
+  NMake Makefiles JOM          = Generates JOM makefiles.
+  MSYS Makefiles               = Generates MSYS makefiles.
+  MinGW Makefiles              = Generates a make file for use with
+                                 mingw32-make.
+  Green Hills MULTI            = Generates Green Hills MULTI files
+                                 (experimental, work-in-progress).
+  Unix Makefiles               = Generates standard UNIX makefiles.
+  Ninja                        = Generates build.ninja files.
+  Ninja Multi-Config           = Generates build-<Config>.ninja files.
+  Watcom WMake                 = Generates Watcom WMake makefiles.
+  CodeBlocks - MinGW Makefiles = Generates CodeBlocks project files.
+  CodeBlocks - NMake Makefiles = Generates CodeBlocks project files.
+  CodeBlocks - NMake Makefiles JOM
+                               = Generates CodeBlocks project files.
+  CodeBlocks - Ninja           = Generates CodeBlocks project files.
+  CodeBlocks - Unix Makefiles  = Generates CodeBlocks project files.
+  CodeLite - MinGW Makefiles   = Generates CodeLite project files.
+  CodeLite - NMake Makefiles   = Generates CodeLite project files.
+  CodeLite - Ninja             = Generates CodeLite project files.
+  CodeLite - Unix Makefiles    = Generates CodeLite project files.
+  Eclipse CDT4 - NMake Makefiles
+                               = Generates Eclipse CDT 4.0 project files.
+  Eclipse CDT4 - MinGW Makefiles
+                               = Generates Eclipse CDT 4.0 project files.
+  Eclipse CDT4 - Ninja         = Generates Eclipse CDT 4.0 project files.
+  Eclipse CDT4 - Unix Makefiles= Generates Eclipse CDT 4.0 project files.
+  Kate - MinGW Makefiles       = Generates Kate project files.
+  Kate - NMake Makefiles       = Generates Kate project files.
+  Kate - Ninja                 = Generates Kate project files.
+  Kate - Unix Makefiles        = Generates Kate project files.
+  Sublime Text 2 - MinGW Makefiles
+                               = Generates Sublime Text 2 project files.
+  Sublime Text 2 - NMake Makefiles
+                               = Generates Sublime Text 2 project files.
+  Sublime Text 2 - Ninja       = Generates Sublime Text 2 project files.
+  Sublime Text 2 - Unix Makefiles
+                               = Generates Sublime Text 2 project files.
+```
+
+Now build
+
+```shell
+MSBuild.exe -m .\ALL_BUILD.vcxproj
+```
+
+For `-m`, see [Building Multiple Projects in Parallel with MSBuild - MSBuild | Microsoft Docs](https://docs.microsoft.com/en-us/visualstudio/msbuild/building-multiple-projects-in-parallel-with-msbuild?view=vs-2022#-maxcpucount-switch).
+
+Run the executable program.
+
+```shell
+$ .\Debug\hello.exe
+Hello World!
+```
+
+#### Ninja
+
+Assume that you have install `ninja` properly.
+
+Create a folder for build files.
+
+```shell
+mkdir ninjabuild
+cd ninjabuild
+```
+
+Set the generator to `ninja`
+
+```shell
+cmake .. -GNinja
+```
+
+Build
+
+```shell
+ninja
+```
+
+Run the executable program.
+
+```shell
+$ ./hello.exe
+Hello World!
 ```

@@ -82,14 +82,13 @@ cmake version 3.23.2
 CMake suite maintained and supported by Kitware (kitware.com/cmake).
 ```
 
-Create folders for the simple test program.
+Enter the directory of the simple test program.
 
 ```shell
-mkdir helloworld
-cd helloworld
+cd hello
 ```
 
-Create `helloworld.cpp` with the following code
+Here are two files -- `helloworld.cpp` with the following code
 
 ```c++
 #include <iostream>

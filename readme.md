@@ -214,6 +214,11 @@ Hello World!
 
 Assume that you have install `ninja` properly.
 
+```shell
+$ ninja --version
+1.11.0
+```
+
 Create a folder for build files.
 
 ```shell

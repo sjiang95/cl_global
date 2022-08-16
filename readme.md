@@ -12,7 +12,7 @@ Please follow the instructions below to configure the development environment pr
 
 ### Install `Build Tools for Visual Studio`
 
-Download and launch [Visual Studio Tools - Install Free for Windows, Mac, Linux](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022). Select and install the following two components.
+Download and launch [Build Tools for Visual Studio \<year\>](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)（中文：Visual Studio \<年份\> 生成工具）. Select and install the following two components.
 ![installer components](./imgs/vsInstaller.png)
 
 ### Set environment variables

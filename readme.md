@@ -119,8 +119,7 @@ There are many choices of build systems. This tutorial takes `MSBuild` and `ninj
 Create a folder for build files.
 
 ```shell
-mkdir msbuild
-cd msbuild
+mkdir msbuild;cd msbuild
 ```
 
 Generate build files using `cmake`. The path `..` points to where `CMakeLists.txt` is.
@@ -221,8 +220,7 @@ $ ninja --version
 Create a folder for build files.
 
 ```shell
-mkdir ninjabuild
-cd ninjabuild
+mkdir ninjabuild;cd ninjabuild
 ```
 
 Set the generator to `ninja`
